@@ -12,15 +12,20 @@
 # 1. Load Required Packages
 # ========================
 library(tidyverse)
-library(Biostrings)  # For reading and writing FASTA files
-library(stringr)     # For string manipulation (if needed)
+library(Biostrings)  
+library(stringr)     
 
 # ========================
 # 2. Define File Paths
 # ========================
+## inputs
 fasta_file <- "~/Downloads/East_africa_consensus/all.fasta"
 metadata_file <- "~/Downloads/East_africa_consensus/KE_TZ_final_data.csv"
-matched_fasta_output <- "matched_sequences.fasta"
+
+## outputs
+# store date to use in output filenames
+today <- format(Sys.Date(), "%Y%m%d")
+matched_fasta_output <- paste0("processed_data/R-outputs/", today, "_matched_sequences.fasta")
 
 # ========================
 # 3. Read in the Data
@@ -57,8 +62,8 @@ cat("Sequences missing from metadata:", length(missing_in_metadata), "\n")
 cat("Metadata entries missing from FASTA:", length(missing_in_fasta), "\n")
 
 # Optional: write mismatches to file
-writeLines(missing_in_metadata, "missing_in_metadata.txt")
-writeLines(missing_in_fasta, "missing_in_fasta.txt")
+writeLines(missing_in_metadata, paste0("processed_data/R-outputs/", today, "_missing_in_metadata.txt"))
+writeLines(missing_in_fasta, paste0("processed_data/R-outputs/", today, "_missing_in_fasta.txt"))
 
 # ========================
 # 7. Save Cleaned Metadata (if needed)
@@ -66,7 +71,7 @@ writeLines(missing_in_fasta, "missing_in_fasta.txt")
 # Example: subset metadata to only matched samples
 matched_ids <- intersect(fasta_ids_clean, metadata_ids)
 matched_metadata <- metadata %>% filter(sample_id %in% matched_ids)
-# write_csv(matched_metadata, "matched_metadata.csv")
+# write_csv(matched_metadata, paste0("processed_data/R-outputs/", today, "_matched_metadata.csv"))
 
 # ========================
 # 8. Output Matched FASTA File
