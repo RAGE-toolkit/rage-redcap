@@ -5,7 +5,8 @@ This repository contains materials to support the setup and use of our REDCap da
 - 📄 Data dictionaries
 - 📘 Step-by-step instructions
 
-💡 Visit the [GitHub Pages site](https://your-org.github.io/rabvREDCap-support) for a user-friendly guide.
+### Coming soon...
+(💡 Visit the [GitHub Pages site](https://your-org.github.io/rabvREDCap-support) for a user-friendly guide.)
 
 ## Getting Started
 
