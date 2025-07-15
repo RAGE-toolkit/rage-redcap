@@ -6,6 +6,8 @@
 ###              and performs checks for matching sample names, missing entries,
 ###              or other inconsistencies between the two datasets.
 ###              It also outputs a filtered FASTA with only matched sequences.
+###              Additionally, it allows filtering the metadata by a specified
+###              column (e.g., redcap_data_access_group) to work with a subset.
 ### ============================================================================
 
 # ========================
@@ -19,12 +21,12 @@ library(stringr)
 # 2. Define File Paths
 # ========================
 ## inputs
-fasta_file <- "~/Downloads/East_africa_consensus/all.fasta"
-metadata_file <- "~/Downloads/East_africa_consensus/KE_TZ_final_data.csv"
+fasta_file <- "/Volumes/kb4/philippines/split_fasta/all.fasta"
+metadata_file <- "/Volumes/kb4/philippines/RABVlab_DATA_2025-07-03_1313.csv"
 
 ## outputs
 # store date to use in output filenames
-today <- format(Sys.Date(), "%Y%m%d")
+today <- format(Sys.time(), "%Y%m%d_%H%M")
 matched_fasta_output <- paste0("processed_data/R-outputs/", today, "_matched_sequences.fasta")
 
 # ========================
@@ -38,27 +40,42 @@ fasta_ids <- names(sequences)
 metadata <- read_csv(metadata_file)
 
 # ========================
-# 4. Preprocess & Standardise IDs
+# 4. Filter Metadata Based on User Input
+# ========================
+# Ask the user for a filter column and value (e.g., 'redcap_data_access_group')
+filter_column <- 'redcap_data_access_group'
+filter_value <- 'philippines'
+
+# Check if the user-provided column exists in metadata
+if (!(filter_column %in% colnames(metadata))) {
+  stop("The provided column does not exist in the metadata.")
+}
+
+# Filter the metadata based on the input
+filtered_metadata <- metadata %>% filter(get(filter_column) == filter_value)
+
+# ========================
+# 5. Preprocess & Standardise IDs
 # ========================
 # If needed, clean FASTA or metadata IDs to ensure they match
 # Example: remove suffixes or normalise underscores/dashes
 fasta_ids_clean <- str_replace(fasta_ids, "\\.fasta$", "")
-metadata_ids <- metadata$sample_id  # Update to match your column name
+metadata_ids <- filtered_metadata$sample_id  # Update to match your column name
 
 # ========================
-# 5. Perform Checks
+# 6. Perform Checks
 # ========================
-# Check which FASTA sequences are missing from metadata
+# Check which FASTA sequences are missing from filtered metadata
 missing_in_metadata <- setdiff(fasta_ids_clean, metadata_ids)
 # Check which metadata entries are missing in FASTA
 missing_in_fasta <- setdiff(metadata_ids, fasta_ids_clean)
 
 # ========================
-# 6. Output Summary
+# 7. Output Summary
 # ========================
 cat("Number of sequences in FASTA:", length(fasta_ids_clean), "\n")
-cat("Number of samples in metadata:", length(metadata_ids), "\n")
-cat("Sequences missing from metadata:", length(missing_in_metadata), "\n")
+cat("Number of samples in filtered metadata:", length(metadata_ids), "\n")
+cat("Sequences missing from filtered metadata:", length(missing_in_metadata), "\n")
 cat("Metadata entries missing from FASTA:", length(missing_in_fasta), "\n")
 
 # Optional: write mismatches to file
@@ -66,21 +83,25 @@ writeLines(missing_in_metadata, paste0("processed_data/R-outputs/", today, "_mis
 writeLines(missing_in_fasta, paste0("processed_data/R-outputs/", today, "_missing_in_fasta.txt"))
 
 # ========================
-# 7. Save Cleaned Metadata (if needed)
+# 8. Save Cleaned Metadata (if needed)
 # ========================
 # Example: subset metadata to only matched samples
 matched_ids <- intersect(fasta_ids_clean, metadata_ids)
-matched_metadata <- metadata %>% filter(sample_id %in% matched_ids)
+matched_metadata <- filtered_metadata %>% filter(sample_id %in% matched_ids)
 # write_csv(matched_metadata, paste0("processed_data/R-outputs/", today, "_matched_metadata.csv"))
 
 # ========================
-# 8. Output Matched FASTA File
+# 9. Output Matched FASTA File
 # ========================
 # Get original FASTA names that match the cleaned matched IDs
 matched_seq_names <- names(sequences)[fasta_ids_clean %in% matched_ids]
 matched_sequences <- sequences[matched_seq_names]
+# Count the number of matched sequences
+num_matched_sequences <- length(matched_sequences)
+
 writeXStringSet(matched_sequences, matched_fasta_output)
 cat("Matched FASTA written to:", matched_fasta_output, "\n")
+cat("Number of sequences successfully matched:", num_matched_sequences, "\n")
 
 # ========================
 # End of Script
