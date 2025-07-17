@@ -1,0 +1,76 @@
+
+
+
+# Processing of EA Data
+
+## Overview
+This document outlines the steps taken to process the EA data before uploading it to REDCap. The process involved merging data from multiple sources, addressing inconsistencies, and transforming the data to meet REDCap’s requirements.
+
+---
+
+## 1. Merge Data from Multiple Excel Sheets
+- Read data from various Excel sheets and merge them into a single dataset called `combined_EA`.
+- Address mismatches in `sample_id` caused by:
+  - Whitespaces
+  - Differences in capitalization
+  - Other formatting inconsistencies.
+
+---
+
+## 2. Verify Data Accuracy and Consistency
+The combined dataset was cross-checked for accuracy and consistency with parent databases: **IBCM** and **Contact Tracing**.
+
+### Contact Tracing
+- **69 out of 139 samples** came from the contact tracing (CT) database.
+- Issues identified:
+  - **Date mismatches:** Some dates in CT were recorded as collected a day later than in the parent database. This was an issue with the CT database which is now resolved
+  - **Location mismatches:** A few discrepancies in district or region values. Sikana and Kennedy collaborated to address location mismatches.
+
+### GenBank Accession Numbers
+- **6 samples mismatched** GenBank Accession numbers. Kirstyn retrieved the GenBank upload form which helped resolve discrepancies.
+
+### IBCM
+- A significant challenge: The IBCM database does not record `sample_id`.
+- **Resolution Efforts:**
+  - Kennedy and Gurdeep provided a supplemental local file (not part of the main database).
+  - This resolved a subset of the samples.
+  - **Note:** Pre-March 2022, data collection relied heavily on physical registers due to system limitations.
+
+### Other Data
+- For samples that could not be verified through external sources, the data was accepted as-is, as no further verification was possible.
+
+---
+
+## 3. Data Wrangling
+- Extensive cleaning and wrangling were performed to match variable names and values to the REDCap data dictionary.
+- Ensured all values adhered to the allowed formats and constraints.
+
+---
+
+## 4. Create Mini-Dictionaries
+- Created custom dictionaries to map names to REDCap-accepted codes.
+- Example: Mapping country names to numeric codes.
+
+```r
+# Define country dictionary
+country_dict <- c(
+  "Tanzania" = "0",
+  "Kenya" = "1",
+  "Uganda" = "2",
+  "Philippines" = "3",
+  "Peru" = "4",
+  "Nigeria" = "5",
+  "Malawi" = "6"
+)
+```
+
+
+# Processing of PH Data
+
+Modifications during data processing:
+1. `sample_buffer` is missing and therefore assumed to be 4. Unknown for all records
+2. `rtqpcr` is missing and therefore assumed to be 2. Unknown for all records
+3. `test_centre` is missing and therefore filled as 5. Other for all records
+4. `ngs_platform` is missing and therefore assumed to be 0. Nanopore for all records
+5. `nanopore_platform` is missing and therefore assumed to be 0. Minion for all records
+
