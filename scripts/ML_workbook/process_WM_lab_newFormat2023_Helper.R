@@ -58,14 +58,14 @@ create_diagnostic_result_rule <- function(df) {
 
 # Specify the columns that belong to each instrument (adjust based on actual columns)
 
-data_dict <- read.csv("./existing_data/RABVlab_DataDictionary_2025-07-15_v2.csv")
+data_dict <- read.csv("./data_dictionaries/RABVlab_DataDictionary_2025-07-16.csv")
 
-required <- c("sample_id", "redcap_repeat_instrument", "redcap_repeat_instance")
+required <- c("sample_id", "redcap_repeat_instrument", "redcap_repeat_instance", "redcap_data_access_group")
 
 diagnostic_columns <- data_dict %>%
   filter(Form.Name == "diagnostic") %>%
   pull(Variable...Field.Name) %>%
-  union(required)
+  union("sample_id") # No "redcap_repeat_instrument" & "redcap_repeat_instance" in diagnostic form
 
 sequencing_columns <- data_dict %>%
   filter(Form.Name == "sequencing") %>%
@@ -122,3 +122,74 @@ read_and_parse_dict <- function(dictPath) {
   
   return(dicts)
 }
+
+
+scan_mismatched_levels <- function(dayta, dicts, col_to_check) {
+  # Check if the column is in the dictionary
+  if (!col_to_check %in% names(dicts)) {
+    message(glue::glue("⚠️ '{col_to_check}' is not a coded field (i.e., not constrained in the dictionary)."))
+    return(invisible(NULL))
+  }
+  
+  # Extract values from the column
+  column_values <- unique(as.character(dayta[[col_to_check]]))
+  
+  # Get allowed labels from dict
+  allowed_labels <- unname(dicts[[col_to_check]])
+  
+  # Identify mismatched values
+  not_in_dict <- setdiff(column_values, allowed_labels)
+  
+  # Reporting
+  if (length(not_in_dict) == 0) {
+    message(glue::glue("✅ All values in '{col_to_check}' are valid and match the dictionary."))
+  } else {
+    message(glue::glue("❌ The following values in '{col_to_check}' are not listed in the dictionary:\n - ",
+                       paste(not_in_dict, collapse = ", ")))
+    
+    # Check for fallback categories
+    if (any(c("Unknown", "Other") %in% allowed_labels)) {
+      fallback <- allowed_labels[allowed_labels %in% c("Unknown", "Other")]
+      message(glue::glue("ℹ️ These values will be classed as: {paste(fallback, collapse = ' or ')}"))
+    }
+  }
+  
+  invisible(not_in_dict)
+}
+
+
+capitalize_first_word <- function(x) {
+  x <- str_trim(tolower(x))
+  ifelse(
+    is.na(x) | x == "",
+    x,
+    paste0(toupper(substr(x, 1, 1)), substr(x, 2, nchar(x)))
+  )
+}
+
+
+recode_data <- function(dicts, dayta) {
+  recoded_data <- dayta
+  
+  for (col in intersect(names(dicts), names(dayta))) {
+    dict <- dicts[[col]]
+    
+    # Reverse the dictionary: label → code
+    label_to_code <- setNames(names(dict), dict)
+    
+    # Coerce and match based on lowercase labels
+    original_vals <- as.character(dayta[[col]])
+    matched_vals <- label_to_code[original_vals]
+    
+    # Warn if any unmatched
+    if (any(is.na(matched_vals) & !is.na(original_vals))) {
+      unmatched <- unique(original_vals[is.na(matched_vals)])
+      message(glue::glue("⚠️ Unmatched values in `{col}`: {paste(unmatched, collapse = ', ')}"))
+    }
+    
+    recoded_data[[col]] <- matched_vals
+  }
+  
+  return(recoded_data)
+}
+
