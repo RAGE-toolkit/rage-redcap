@@ -19,6 +19,9 @@ bulk_upload_fasta.py
 # Output files from R CMD build
 /*.tar.gz
 
+# pkgdown site
+docs/
+
 # Output files from R CMD check
 /*.Rcheck/
 
