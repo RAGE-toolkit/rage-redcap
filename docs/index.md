@@ -1,3 +1,8 @@
+---
+title: Home
+layout: default
+---
+
 # RABV REDCap Project 
 This project supports diagnostic and sequencing-related metadata for rabies virus (RABV) samples across research projects in:
 
