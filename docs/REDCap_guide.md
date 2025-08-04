@@ -72,7 +72,7 @@ DOG001,sequencing,2,RUN002,nanopore
   - Avoiding extra spaces or typos
 
 📁 **Download the latest data dictionary** (includes valid codes):  
-[Download from shared folder](<TBC>)
+[Download from git repo](<TBC>)
 
 - Check predefined choices in **column F**, titled *“Choices, Calculations, OR Slider Labels”*.
 
