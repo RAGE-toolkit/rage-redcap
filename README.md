@@ -6,7 +6,8 @@ This repository contains materials to support the setup and use of our REDCap da
 - 📘 Step-by-step instructions
 
 ### Coming soon...
-(💡 Visit the [GitHub Pages site](https://your-org.github.io/rabvREDCap-support) for a user-friendly guide.)
+(💡 Visit the [GitHub Pages site]([https://your-org.github.io/rabvREDCap-support](https://rage-toolkit.github.io/rage-redcap/
+)) for a user-friendly guide.)
 
 ## Getting Started
 
