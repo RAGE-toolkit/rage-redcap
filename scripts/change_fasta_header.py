@@ -2,7 +2,7 @@ import os
 from Bio import SeqIO
 
 # Folder containing the fasta files
-fasta_folder = "/Volumes/kb4/philippines/manually_found_fasta"  # 🔁 Change this to your folder path
+fasta_folder = "/Users/kirstyn.brunker/philippines/fasta_total_15jul2025_n359"  # 🔁 Change this to your folder path
 
 # Loop through all .fasta files in the folder
 for filename in os.listdir(fasta_folder):
