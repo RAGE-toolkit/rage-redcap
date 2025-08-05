@@ -72,7 +72,7 @@ DOG001,sequencing,2,RUN002,nanopore
   - Avoiding extra spaces or typos
 
 📁 **Download the latest data dictionary** (includes valid codes):  
-[Download from git repo](https://github.com/RAGE-toolkit/rage-redcap/blob/main/data_dictionaries/RAGEredcap_DataDictionary_2025-08-04.csv)
+[Download from git repo](https://github.com/RAGE-toolkit/rage-redcap/blob/main/data_dictionaries/RAGEredcap_DataDictionary_2025-08-04.csv](https://github.com/RAGE-toolkit/rage-redcap/blob/main/data_dictionaries/RAGEredcap_DataDictionary.csv)
 
 - Check predefined choices in **column F**, titled *“Choices, Calculations, OR Slider Labels”*.
 
