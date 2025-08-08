@@ -44,6 +44,7 @@ genomecov_depthx1,sequencing,,text,Number of genome positions with a depth of co
 genomecov_depthx5,sequencing,,text,Number of genome positions with a depth of coverage of 5+ reads,,,,,,,,,,,,,
 genomecov_depthx20,sequencing,,text,Number of genome positions with a depth of coverage of 20+ reads,,,,,,,,,,,,,
 genomecov_depthx100,sequencing,,text,Number of genome positions with a depth of coverage of 100+ reads,,,,,,,,,,,,,
+negative_control_sample,sequencing,,radio,Is this a negative control?,"Yes, Yes | No, No",,,,,,,,,,,,
 genbank_accession,sequencing,Public data,text,NCBI GenBank accession,,,,,,,,,,,,,
 consensus_coverage,sequencing,,text,Genome coverage of consensus sequence,,Excluding masked bases (i.e. may differ from BAM coverage stat),,,,,,,,,,,
 consensus_fasta,sequencing,,file,Genome consensus sequence fasta,,,,,,,,,,,,,
