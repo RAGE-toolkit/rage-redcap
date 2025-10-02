@@ -1,5 +1,5 @@
 ---
-title: RAGE-redcap API Setup
+title: API Setup
 layout: default
 ---
 

@@ -1,3 +1,8 @@
+---
+title: Data import
+layout: default
+---
+
 # RAGE-redcap Data and Sequence Import Instructions
 
 This guide provides step-by-step instructions for preparing and importing metadata and sequence data into RAGE-redcap.
