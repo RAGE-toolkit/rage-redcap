@@ -5,3 +5,4 @@ exclude: ["README.md"]
 # Navigation (menu) order
 nav:
   - Home: index.md
+  - Overview: 0_REDCap_guide.md

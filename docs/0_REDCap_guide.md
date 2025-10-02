@@ -1,5 +1,5 @@
 ---
-title: REDCap Guide
+title: Overview guide
 layout: default
 ---
 
