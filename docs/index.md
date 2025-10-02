@@ -25,6 +25,5 @@ The dictionary is organised into two forms:
 
 Fields are based on prior datasets and structured to ensure all necessary metadata can be tracked consistently. Some fields have been added or refined to improve data quality, compatibility with downstream analyses, and to enable smoother integration across sites.
 
-# Data import
-
-To import data, users must first re-format their data to be consistent with the data dictionary.
+# Guide and instructions
+See the [Overview](0_REDCap_guide.md) page.

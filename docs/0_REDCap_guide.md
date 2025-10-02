@@ -3,6 +3,13 @@ title: Overview guide
 layout: default
 ---
 
+# Documentation
+
+- [General guide](0_REDCap_guide.md)
+- [REDCap API Setup](1_redcap_api_setup.md)
+- [Importing to RedCap](2_importing_to_redcap.md)
+
+
 # 🧬 REDCap Guide for Rabies Virus Sequencing Projects
 
 This guide outlines how to use the REDCap project for managing diagnostic and sequencing metadata across rabies virus projects. It includes how to format metadata, use the data import tool, handle repeating instruments, upload consensus FASTA files, and more.
