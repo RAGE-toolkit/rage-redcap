@@ -5,6 +5,9 @@ exclude: ["README.md"]
 # Navigation (menu) order
 nav:
   - Home: index.md
-  - General guide: 0_REDCap_guide.md
-  - API Setup: 1_redcap_api_setup.md
-  - Data import: 2_importing_to_redcap.md
+
+# Exclude other markdown files from auto-nav creation
+exclude:
+  - 0_REDCap_guide.md
+  - 1_redcap_api_setup.md
+  - 2_importing_to_redcap.md
