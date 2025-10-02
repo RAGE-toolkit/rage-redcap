@@ -8,6 +8,7 @@ This project supports diagnostic and sequencing-related metadata for rabies viru
 
 - **East Africa** (Tanzania, Kenya, Uganda)  
 - **Philippines**
+- **Peru**
 
 **To be supported in future:**
 
