@@ -44,3 +44,14 @@ In this example, the record is split across **two rows**, with each row containi
 This version is correctly formatted and should upload to REDCap without any issues.
 
 Once imported, you can view the record by navigating to **Add/Edit Records** in REDCap and searching for the relevant sample ID.
+
+
+### 📄 `received_data_1`  
+
+This is a more comprehensive - and quite realistic! - example of the data you might recieve or recorded yourself. Note that some of the columns in this example might not been data relevant to sequence metadata (it might be epi data, which is not stored in our redcap but is still important to keep elsewhere) or may be relevant information with the wrong or slightly different column name. Formats or entries may not be correct - it is important they match what is specified in the data dictionary. 
+Can you prepare a data import from this data using the instructions in the data import secction here: https://rage-toolkit.github.io/rage-redcap/2_importing_to_redcap.html
+
+### 🧬  `received_seq_1`   
+
+This is a multifasta file that contains the consensus sequences associated with received_data_1. Before these can be uploaded via the API interface they must be prepared: 
+https://rage-toolkit.github.io/rage-redcap/2_importing_to_redcap.html

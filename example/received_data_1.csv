@@ -1,0 +1,6 @@
+﻿case_number,sample_id,Barangay,Municipality,Province,Date_collected,Source,Date_extracted,Date_sequenced,run_name,flowcell_ID,barcode,total_reads,mapped_reads,meanReads,sd_reads,median_reads,min_reads,max_reads,basesCovered_1,basesCovered_5,basesCovered_20,basesCovered_100,basesCovered_200,nonMaskedConsensusCov,% coverage (nonMasked),% coverage (200),% coverage (100),% coverage (20)
+M-1690,RADDL20-25-096,Poras,Boac,Marinduque,24-Nov-23,Dog,28-Nov-24,2-Dec-24,pretend_run11,FAU12434,barcode01,2392,2025,80.7256118,94.52004476,53,0,610,11676,11475,10569,2816,532,8200,68.72,4.46,23.6,88.58
+M-1691,RADDL20-24-099,Tabi,Boac,Marinduque,1-Feb-24,Dog,3-Dec-24,9-Jan-25,pretend_run11,FAU12434,barcode02,8621,8157,373.890295,406.004594,265,0,2570,11894,11892,11672,9851,6633,11599,97.21,55.59,82.56,97.82
+M-1692,RADDL20-24-166,Bangbangalon,Boac,Marinduque,16-Feb-24,Dog,3-Dec-24,9-Jan-25,pretend_run11,FAU12434,barcode03,12443,11751,449.787211,510.382432,218,0,2811,11690,11679,11671,10063,6620,11598,97.2,55.48,84.34,97.81
+M-1566,RADDL20-24-127,Daykitin,Buenavista,Marinduque,14-Feb-24,Dog,3-Dec-24,9-Jan-25,pretend_run11,FAU12434,barcode04,4466,4053,232.901944,166.70639,180,0,1108,11895,11892,11673,10252,5547,11593,97.16,46.49,85.92,97.83
+NTC1_run11,RADDL20-24-999,,,,,,,9-Jan-25,pretend_run11,FAU12434,barcode05,10,9,0,0,0,0,0,346,0,0,0,0,0,0,0,0,0
