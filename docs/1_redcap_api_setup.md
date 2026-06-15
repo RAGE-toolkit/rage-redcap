@@ -18,11 +18,12 @@ Ensure you have been granted an API token for RAGE-REDCap. If not, contact the p
 1. Open the `redcap-api.R` script located in the `R_scripts` directory of this repository.
 2. Run the code, which should look like this:
 ```R
-unlockREDCap(
-  c(rcon = 'rage-redcap'),  
-  keyring = "rage-redcap",
-  envir = globalenv(),
-  url = 'https://cvr-redcap.mvls.gla.ac.uk/redcap/redcap_v17.1.1/API/'
+library(redcapAPI)
+
+rcon <- redcapConnection(
+  url = "https://cvr-redcap.mvls.gla.ac.uk/redcap/redcap_v17.1.1/API/",
+  token = Sys.getenv("REDCAP_RAGE_TOKEN")
+)
 )
 ```
 3.	A prompt will appear asking you to create a new password for the rage-redcap keyring. Enter a secure password and press OK.
