@@ -22,7 +22,7 @@ unlockREDCap(
   c(rcon = 'rage-redcap'),  
   keyring = "rage-redcap",
   envir = globalenv(),
-  url = 'https://cvr-redcap.mvls.gla.ac.uk/redcap/redcap_v15.5.15/API/'
+  url = 'https://cvr-redcap.mvls.gla.ac.uk/redcap/redcap_v17.1.1/API/'
 )
 ```
 3.	A prompt will appear asking you to create a new password for the rage-redcap keyring. Enter a secure password and press OK.
