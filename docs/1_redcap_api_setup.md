@@ -58,7 +58,7 @@ Create a REDCap connection using the redcapAPI package:
 library(redcapAPI)
 
 rcon <- redcapConnection(
-  url = "https://cvr-redcap.mvls.gla.ac.uk/redcap/redcap_v17.1.1/API/",
+  url = "https://cvr-redcap.mvls.gla.ac.uk/redcap/api/",
   token = Sys.getenv("REDCAP_RAGE_TOKEN")
 )
 ```
