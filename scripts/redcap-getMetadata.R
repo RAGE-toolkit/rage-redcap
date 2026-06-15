@@ -5,11 +5,7 @@ exists("rcon")
 # REDCap connection
 exists("rcon")
 #If this doesn't exist then need to run this to set up:
-unlockREDCap(c(rcon= 'rage-redcap'),
-             keyring= "login",
-             envir= globalenv(),
-             url= 'https://cvr-redcap.mvls.gla.ac.uk/redcap/redcap_v15.5.11/API/')
-
+source("scripts/redcap-api.R")
 
 # Export all records including repeat instances filtered by DAG
 df <- exportRecordsTyped(
