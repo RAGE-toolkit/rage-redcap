@@ -3,34 +3,77 @@ title: API Setup
 layout: default
 ---
 
-# RAGE-redcap API Setup
+# RAGE-REDCap API Setup
 
-This guide explains how to securely configure access to the RAGE-redcap API using the `redcapAPI` R package.
+This guide explains how to securely configure access to the RAGE-REDCap API using the `redcapAPI` R package. The recommended approach uses environment variables to ensure secure, reproducible, and platform-independent authentication.
 
 ---
 
-## API Access
-Ensure you have been granted an API token for RAGE-REDCap. If not, contact the project lead: kirstyn.brunker@glasgow.ac.uk.  
+## 🔐 API Access
 
-- Log in to REDCap, go to **Applications > API**, and copy your API token for the next steps.
+To access the RAGE-REDCap project, you must have an API token.
 
-## Using the `redcapAPI` Package
-1. Open the `redcap-api.R` script located in the `R_scripts` directory of this repository.
-2. Run the code, which should look like this:
-```R
+If you do not have a token, contact the project lead:
+kirstyn.brunker@glasgow.ac.uk
+
+To retrieve your token:
+
+1. Log in to REDCap.
+2. Navigate to **Applications → API**.
+3. Copy your personal API token for use in the next step.
+
+---
+
+## ⚙️ Secure Configuration (Recommended)
+
+We recommend storing your API token as an environment variable rather than embedding it in scripts or using system keyrings.
+
+### Step 1 — Create or edit your `.Renviron` file
+
+In R, run:
+
+```r
+file.edit("~/.Renviron")
+```
+
+Add the following line:   
+```r
+REDCAP_RAGE_TOKEN=your_api_token_here
+```
+
+Save the file and restart R.
+
+### Step 2 — Verify your configuration
+
+Check that the token is available:
+```r
+Sys.getenv("REDCAP_RAGE_TOKEN")
+```
+If configured correctly, this will return your API token.
+
+## 🚀 Connecting to REDCap
+
+Create a REDCap connection using the redcapAPI package:
+```r
 library(redcapAPI)
 
 rcon <- redcapConnection(
   url = "https://cvr-redcap.mvls.gla.ac.uk/redcap/redcap_v17.1.1/API/",
   token = Sys.getenv("REDCAP_RAGE_TOKEN")
 )
-)
 ```
-3.	A prompt will appear asking you to create a new password for the rage-redcap keyring. Enter a secure password and press OK.
-	4.	You will then be prompted to enter your API token. Paste the token you copied from REDCap.
-5.	This establishes your API connection to the REDCap data.
-6.	In future sessions, you will be prompted for the keyring password. Keep a record of it.
-7.	For any scripts that need to access REDCap, simply source this script at the start:
-```R
-source("R_scripts/redcap-api.R")
+## 🔁 Recommended Workflow
+
+Wrap the connection in a helper function:
+```r
+get_rcon <- function() {
+  redcapConnection(
+    url = "https://cvr-redcap.mvls.gla.ac.uk/redcap/redcap_v17.1.1/API/",
+    token = Sys.getenv("REDCAP_RAGE_TOKEN")
+  )
+}
+```
+Usage:
+```r
+rcon <- get_rcon()
 ```
