@@ -66,9 +66,9 @@ In R, run:
 file.edit("~/.Renviron")
 ```
 Add the following line:   
-
+```r
 REDCAP_RAGE_TOKEN=your_api_token_here
-
+```
 Replace your_api_token_here with your actual REDCap API token.
 
 Save the file and close it.
