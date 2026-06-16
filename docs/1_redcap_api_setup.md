@@ -97,7 +97,5 @@ rcon <- redcapAPI::redcapConnection(
 )
 ```
 
-Expected output
-
 If successful, you should see:
 REDCap API Connection Object
