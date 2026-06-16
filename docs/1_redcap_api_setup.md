@@ -96,6 +96,11 @@ rcon <- redcapAPI::redcapConnection(
   token = Sys.getenv("REDCAP_RAGE_TOKEN")
 )
 ```
-
-If successful, you should see:
+The expected output from:
+```r
+rcon
+```
+should be:
+```r
 REDCap API Connection Object
+```
