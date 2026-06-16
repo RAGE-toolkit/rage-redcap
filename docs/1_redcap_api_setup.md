@@ -49,7 +49,8 @@ Alternatively, use GitHub Desktop or another GUI client.
 
 ## Step 2 — Open the R project
 
-Open the R project file:
+Open the R project file:   
+
 ~/GitHub/rage-redcap/rabv_redcap.Rproj
 
 Using an R project ensures that:
@@ -64,7 +65,8 @@ In R, run:
 ```r
 file.edit("~/.Renviron")
 ```
-Add the following line:
+Add the following line:   
+
 REDCAP_RAGE_TOKEN=your_api_token_here
 
 Replace your_api_token_here with your actual REDCap API token.
