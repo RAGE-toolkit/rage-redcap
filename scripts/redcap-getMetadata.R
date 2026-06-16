@@ -76,6 +76,11 @@ df_per_80 <- df_per %>%
   mutate(consensus_coverage = as.numeric(consensus_coverage)) %>%
   filter((consensus_coverage / 11923) * 100 >= 80)
 
+# filter by country
+df_tza <- df_latest %>%
+  filter(grepl("Tanzania", country, ignore.case = TRUE))
+dim(df_tza )
+
 # # # Download the associated fasta files
 # 
 # # Create an output folder named with the current date/time

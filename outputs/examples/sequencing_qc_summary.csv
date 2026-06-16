@@ -1,0 +1,10 @@
+"country","qc_status","n_samples"
+"TZA: Tanzania","Low coverage",480
+"KEN: Kenya","Low coverage",8
+"PHL: Philippines","High quality",386
+"PHL: Philippines","Low coverage",44
+"PHL: Philippines","Usable",36
+"PER: Peru","High quality",152
+"PER: Peru","Low coverage",9
+"PER: Peru","Usable",15
+NA,"Low coverage",1
