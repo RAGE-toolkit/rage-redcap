@@ -92,7 +92,7 @@ Once the token is available, you can establish a connection using redcapAPI:
 library(redcapAPI)
 
 rcon <- redcapAPI::redcapConnection(
-  url   = "YOUR_REDCAP_URL",
+  url   = "https://cvr-redcap.mvls.gla.ac.uk/redcap/api/",
   token = Sys.getenv("REDCAP_RAGE_TOKEN")
 )
 ```
