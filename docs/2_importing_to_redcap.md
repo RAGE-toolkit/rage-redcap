@@ -48,10 +48,12 @@ This guide provides step-by-step instructions for preparing and importing metada
 Before running the sequence import scripts, set up the conda environment included in this repository.
 
 1. Create the environment from the provided `environment.yml` file:
+Note: you may need to adjust the filepath of rage_redcap according to its location on your system
    ```bash
+   cd ~/GitHub/rage_redcap
    conda env create -f environment.yml
    ```
-2.    Activate the environment:
+3.    Activate the environment:
    ```bash
 conda activate rage-redcap
    ```
