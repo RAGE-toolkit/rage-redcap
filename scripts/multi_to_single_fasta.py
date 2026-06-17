@@ -31,8 +31,8 @@ def multifasta_to_single_fasta(input_file, output_folder):
         print(f"Error processing the file: {e}")
 
 #  usage:
-input_file = "Addfilepath"  # Path to the input multifasta file
-output_folder = "Addfilepath"  # Path to the output folder where single fasta files will be saved
+input_file = "data/test_data/concat_genome.fasta"  # Path to the input multifasta file
+output_folder = "data/test_data/split_fasta"  # Path to the output folder where single fasta files will be saved
 
 # Call the function
 multifasta_to_single_fasta(input_file, output_folder)
