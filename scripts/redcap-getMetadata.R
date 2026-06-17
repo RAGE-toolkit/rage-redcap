@@ -45,6 +45,7 @@ df_merged <- df_seq_clean %>%
 # Note this will contain all sequencing instances so there may be multiple rows per sample
 
 ## df_merged is a tidied version of the entire dataset from redcap (including different countries, neg control, repeat instances etc)
+write.csv(df_merged, "outputs/df_merged.csv", row.names=F)
 
 # Remove negative controls
 df_positives <- df_merged %>%
