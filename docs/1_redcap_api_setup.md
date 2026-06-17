@@ -5,75 +5,102 @@ layout: default
 
 # RAGE-REDCap API Setup
 
-This guide explains how to securely configure access to the RAGE-REDCap API using the `redcapAPI` R package. The recommended approach uses environment variables to ensure secure, reproducible, and platform-independent authentication.
+This guide explains how to securely configure access to the RAGE-REDCap API using the `redcapAPI` R package.
+
+The recommended approach uses environment variables to ensure secure, reproducible, and platform-independent authentication.
 
 ---
 
 ## 🔐 API Access
 
-To access the RAGE-REDCap project, you must have an API token.
+To access the RAGE-REDCap project, you will need an API token.
 
-If you do not have a token, contact the project lead:
-kirstyn.brunker@glasgow.ac.uk
+If you do not already have a token, contact the project lead:
 
-To retrieve your token:
+**kirstyn.brunker@glasgow.ac.uk**
 
-1. Log in to REDCap.
-2. Navigate to **Applications → API**.
-3. Copy your personal API token for use in the next step.
+---
+
+### Obtaining your API token
+
+1. Log in to REDCap
+2. Navigate to **Applications → API**
+3. Copy your personal API token
+
+⚠️ Treat this token as sensitive information. Do not commit it to GitHub or share it in scripts.
 
 ---
 
 ## ⚙️ Secure Configuration (Recommended)
 
-We recommend storing your API token as an environment variable rather than embedding it in scripts or using system keyrings.
+We strongly recommend storing your API token as an environment variable using `.Renviron`.  
+This avoids hard-coding credentials and improves reproducibility across systems.
 
-### Step 1 — Create or edit your `.Renviron` file
+---
+
+### Step 1 — Clone the repository
+
+If you have not already cloned the repository:
+
+```bash
+git clone https://github.com/RAGE-toolkit/rage-redcap ~/GitHub/rage-redcap
+```
+Alternatively, use GitHub Desktop or another GUI client.
+
+## Step 2 — Open the R project
+
+Open the R project file:   
+
+~/GitHub/rage-redcap/rabv_redcap.Rproj
+
+Using an R project ensures that:
+- relative file paths work correctly
+- the working directory is set automatically
+- scripts run consistently across machines
+
+## Step 3 — Create or edit your `.Renviron` file
 
 In R, run:
 
 ```r
 file.edit("~/.Renviron")
 ```
-
 Add the following line:   
 ```r
 REDCAP_RAGE_TOKEN=your_api_token_here
 ```
+Replace your_api_token_here with your actual REDCap API token.
 
-Save the file and restart R.
+Save the file and close it.
 
-### Step 2 — Verify your configuration
+⚠️ Important: You must restart R after editing .Renviron for changes to take effect.
 
-Check that the token is available:
+## Step 4 — Verify configuration
+
+After restarting R, confirm that the environment variable is available:
 ```r
 Sys.getenv("REDCAP_RAGE_TOKEN")
 ```
 If configured correctly, this will return your API token.
 
-## 🚀 Connecting to REDCap
+If it returns an empty string (""), the environment variable has not been set correctly or R has not been restarted.
 
-Create a REDCap connection using the redcapAPI package:
+## Step 5 — Connect to REDCap
+
+Once the token is available, you can establish a connection using redcapAPI:
 ```r
 library(redcapAPI)
 
-rcon <- redcapConnection(
-  url = "https://cvr-redcap.mvls.gla.ac.uk/redcap/api/",
+rcon <- redcapAPI::redcapConnection(
+  url   = "https://cvr-redcap.mvls.gla.ac.uk/redcap/api/",
   token = Sys.getenv("REDCAP_RAGE_TOKEN")
 )
 ```
-## 🔁 Recommended Workflow
-
-Wrap the connection in a helper function:
+The expected output from:
 ```r
-get_rcon <- function() {
-  redcapConnection(
-    url = "https://cvr-redcap.mvls.gla.ac.uk/redcap/redcap_v17.1.1/API/",
-    token = Sys.getenv("REDCAP_RAGE_TOKEN")
-  )
-}
+rcon
 ```
-Usage:
+should be:
 ```r
-rcon <- get_rcon()
+REDCap API Connection Object
 ```
