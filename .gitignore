@@ -55,3 +55,15 @@ rsconnect/
 .env
 
 *.key
+
+# User-specific files
+
+user/*
+
+# Keep folder structure
+
+!user/.gitkeep
+
+!user/example/
+
+!user/example/.gitkeep
