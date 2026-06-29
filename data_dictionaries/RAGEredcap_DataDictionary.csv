@@ -1,5 +1,7 @@
 Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, Calculations, OR Slider Labels",Field Note,Text Validation Type OR Show Slider Number,Text Validation Min,Text Validation Max,Identifier?,Branching Logic (Show field only if...),Required Field?,Custom Alignment,Question Number (surveys only),Matrix Group Name,Matrix Ranking?,Field Annotation
 sample_id,diagnostic,,text,Field sample id,,,,,,,,,,,,,
+uploaded_by,diagnostic,,text,Person uploading record,,,,,,,,,,,,,
+upload_date,diagnostic,,text,Timestamp upload (DMY),,,date_dmy,,,,,,,,,,
 case_id,diagnostic,,text,Field case id,,,,,,,,,,,,,
 sample_labid,diagnostic,,text,Lab sample id,,,,,,,,,,,,,
 sample_sequenceid,diagnostic,,text,Sequence sample id,,Label used for sequencing (sometimes this is not the same as lab id!),,,,,,,,,,,
