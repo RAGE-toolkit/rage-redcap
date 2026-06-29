@@ -9,7 +9,7 @@ sample_tissuetype,diagnostic,,dropdown,Tissue type,"Brain, Brain | Salivary_glan
 sample_buffer,diagnostic,,dropdown,Sample collection/storage buffer,"Glycerol-saline, Glycerol-saline | RNAshield, RNAshield | RNAlater, RNAlater | None, None | PBS, PBSwash | No_buffer_fresh_stored_at_-80, No_buffer_fresh_stored_at_-80 | No_buffer_fresh, No_buffer_fresh | Unknown, Unknown",,,,,,,,,,,,
 country,diagnostic,,dropdown,Country of origin,"Tanzania, TZA: Tanzania | Kenya, KEN: Kenya | Uganda, UGA: Uganda | Philippines, PHL: Philippines | Peru, PER: Peru | Nigeria, NGA: Nigeria | Malawi, MWI: Malawi",,,,,,,,,,,,
 hmpcr_n405,diagnostic,Diagnostics,dropdown,Results of hemi-nested PCR,"Pos1, Pos1 | Pos2, Pos2 | Neg, Neg | NA, NA",,,,,,,,,,,,
-rtassay,diagnostic,,dropdown,Type of real-time assay,"SYBR, SYBR | LN34, LN34 | Unknown, Unknown | NA, NA",,,,,,,,,,,,
+rtassay,diagnostic,,dropdown,Type of real-time assay,"SYBR, SYBR | LN34, LN34 | RaVPh, RaVPh | Unknown, Unknown | NA, NA",,,,,,,,,,,,
 rtqpcr,diagnostic,,text,Ct value,,,,,,,,,,,,,
 lateral_flow_test,diagnostic,,dropdown,Result from lateral flow test,"Positive, Positive| Negative, Negative | NA, NA",,,,,,,,,,,,
 fat,diagnostic,,dropdown,Result from FAT test,"Positive, Positive| Negative, Negative | NA, NA",,,,,,,,,,,,
